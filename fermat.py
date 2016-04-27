@@ -10,9 +10,7 @@ def is_probable_prime(p, k):
     """
     for _ in range(k):
         a = randint(1, p-1)
-        if pow(a, p-1, p) == 1:
-            continue
-        else:
+        if pow(a, p-1, p) != 1:
             return False
     return True
 
