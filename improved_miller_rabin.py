@@ -1,4 +1,7 @@
-_known_primes = [2,3,5,7,11,13,17,19,23,29]
+from decorators import print_statistics
+_known_primes = [2, 3, 5, 7, 11, 13,
+                 17, 19, 23, 29]
+
 
 def _try_composite(a, d, n, s):
     if pow(a, d, n) == 1:
@@ -8,6 +11,8 @@ def _try_composite(a, d, n, s):
             return False
     return True # n  is definitely composite
 
+
+@print_statistics
 def is_prime(n, _precision_for_huge_n=16):
     if n in _known_primes or n in (0, 1):
         return True

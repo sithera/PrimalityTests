@@ -1,7 +1,8 @@
 from random import randint
+from decorators import print_statistics
 
-
-def is_probable_prime(p, k):
+@print_statistics
+def is_probable_prime(p, k=100000):
     """
     Fermat test that determines whether a number is probable prime
     :param p: number to test
@@ -14,7 +15,3 @@ def is_probable_prime(p, k):
             return False
     return True
 
-#  Tests
-for i in range(0, 10):
-    p = randint(0, 5000000000000)
-    print("Number: " + str(p) + " is prime: " + str(is_probable_prime(p, 10000)))
