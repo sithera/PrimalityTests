@@ -5,14 +5,14 @@ import pickle
 carmichael_numbers = []
 numbers_to_pickle = []
 
-with open('./data/carmichael4.txt') as carmichael:
+with open('./data/carmichael16.txt') as carmichael:
     carmichael_numbers = carmichael.read().splitlines()
 
-number_count = 2
+number_count = 100
 multiple = 100
 start_range = 2
 end_range = 100
-for package in range(1, 8):
+for package in range(1, 9):
     not_prime_count = 0
     print("Package: " + str(package))
     print("Range: " + str(start_range) + "-" + str(end_range))
@@ -23,7 +23,6 @@ for package in range(1, 8):
             if fermat.is_probable_prime(random_number) is True:
                 if random_number not in carmichael_numbers:
                     numbers_to_pickle.append(random_number)
-                    print(random_number)
                     break
 
             elif not_prime_count < number_count:

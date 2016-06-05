@@ -2,7 +2,7 @@ from random import randint
 from decorators import print_statistics
 
 @print_statistics
-def is_probable_prime(p, k=100000):
+def is_probable_prime(p, k=7):
     """
     Fermat test that determines whether a number is probable prime
     :param p: number to test
