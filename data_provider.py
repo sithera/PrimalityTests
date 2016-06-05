@@ -23,7 +23,7 @@ def generate_and_pickle_random_numbers(number_of_random_numbers, starting_num=0,
 
     file_name = "./data/%s_random_numbers_from_%s_to_%s.p" % (number_of_random_numbers, starting_num, ending_num)
 
-    pickle.dump(numbers, open(file_name, "wb"))
+    pickle.dump(numbers, open(file_name, "wb+"))
 
     print("%s numbers saved to file %s" % (number_of_random_numbers, file_name))
 
