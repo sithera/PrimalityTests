@@ -24,15 +24,18 @@ def test_by_number(numbers):
     for number in numbers:
         # miller_rabin.is_probable_prime(number)
         # improved_miller_rabin.is_prime(number)
-        # fermat.is_probable_prime(number)
+        fermat.is_probable_prime(number)
         # aks.is_prime(number)
-        solovay_strassen.is_probable_prime(number)
+        # solovay_strassen.is_probable_prime(number)
 
 if __name__ == "__main__":
-    # data_provider.generate_and_pickle_random_numbers(40000)
+    # numbers_count = 1
+
+    # data_provider.generate_and_pickle_random_numbers(numbers_count, 0, 999999999)
 
     global numbers
-    file_name = "./data/400_random_numbers_from_0_to_9223372036854775806.p"
+    # file_name = "./data/%d_random_numbers_from_0_to_999999999.p" % numbers_count
+    file_name = "./data/data_set.p"
     numbers = data_provider.get_random_numbers(file_name)
     command = "run_testing_function(%s)"
 
