@@ -3,7 +3,6 @@ from decorators import print_statistics
 
 
 @print_statistics
-@profile
 def is_probable_prime(n, k=10):
     if n == 2:
         return True

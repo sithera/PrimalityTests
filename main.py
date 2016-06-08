@@ -1,11 +1,9 @@
 import data_provider
-import miller_rabin
-import improved_miller_rabin
 import fermat
-import aks
-import solovay_strassen
-import cProfile
 import os
+import improved_miller_rabin
+import frobenius
+import solovay_strassen
 
 numbers = []
 accuracy = 10000
@@ -24,15 +22,40 @@ def test_by_number(numbers):
     for number in numbers:
         # miller_rabin.is_probable_prime(number)
         # improved_miller_rabin.is_prime(number)
-        # fermat.is_probable_prime(number)
+        fermat.is_probable_prime(number)
         # aks.is_prime(number)
+        # solovay_strassen.is_probable_prime(number)
+
+
+def run_fermat(numbers):
+    for number in numbers:
+        fermat.is_probable_prime(number)
+
+
+def run_miller_rabin(numbers):
+    for number in numbers:
+        improved_miller_rabin.is_prime(number)
+
+
+def run_frobenius(numbers):
+    for number in numbers:
+        frobenius.is_probable_prime(number)
+
+
+def run_solovay_strassen(numbers):
+    for number in numbers:
         solovay_strassen.is_probable_prime(number)
 
-if __name__ == "__main__":
-    # data_provider.generate_and_pickle_random_numbers(40000)
 
+def run_all_tests(numbers):
+    run_fermat(numbers)
+    run_miller_rabin(numbers)
+    run_solovay_strassen(numbers)
+    # run_frobenius(numbers)
+
+if __name__ == "__main__":
     global numbers
-    file_name = "./data/400_random_numbers_from_0_to_9223372036854775806.p"
+    file_name = "./data/data_set.p"
     numbers = data_provider.get_random_numbers(file_name)
     command = "run_testing_function(%s)"
 
@@ -44,6 +67,6 @@ if __name__ == "__main__":
     #
     #     cProfile.run(command % func_name)
 
-    test_by_number(numbers)
+    run_all_tests(numbers)
     print("Finished!")
 
