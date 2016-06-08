@@ -1,36 +1,50 @@
 import time
 from functools import wraps
 import psutil
-
+import os
 
 def print_statistics(function):
     """
-    Checks how long does it take to execute function.
+    Decorator.
+    Saves function statistics to logs.
+    Logged statistics:
+    - execution time
+    - cpu usage
+    - memory usage
+
     :param function:
     :return:
     """
     @wraps(function)
-    def function_timer(*args, **kwargs):
-        t0 = time.time()
-
-        result = function(*args, **kwargs)
-        t1 = time.time()
-
-        tested_number = args[0]
-        cpu_usage = str(psutil.Process().cpu_times())
-        memory_usage = str(psutil.Process().memory_info())
+    def function_statistic_logger(*args, **kwargs):
         module_name = function.__module__
-        execution_time = str(t1-t0)
+        tested_number = args[0]
+        this_process = psutil.Process()
 
-        log_row = "%s %s %s %s %s\n" % (str(tested_number), str(result),
-                                      execution_time, cpu_usage, memory_usage)
+        this_process.cpu_percent()
+        t0 = time.clock()
+        memory_before = this_process.memory_info()
+        result = function(*args, **kwargs)
+        t1 = time.clock()
+        memory_after = this_process.memory_info()
+        cpu_percent = this_process.cpu_percent()
 
-        log_file_name = "./logs/%s.log" % module_name
+        values = {
+            'number': str(tested_number),
+            'execution_time': str(t1-t0),
+            'cpu_usage': str(cpu_percent),
+            'memory_rss': str(memory_after.rss - memory_before.rss),
+            'memory_vms': str(memory_after.vms - memory_before.vms)
+        }
 
-        with open(log_file_name, 'ab') as log:
-            log.write(str.encode(log_row))
+        log_entry = "%(number)s %(execution_time)s %(cpu_usage)s  %(memory_rss)s %(memory_vms)s\n" % values
+
+        log_file = "./logs/%s.log" % module_name
+
+        with open(log_file, 'ab') as log:
+            log.write(str.encode(log_entry))
 
         return result
-    return function_timer
+    return function_statistic_logger
 
 
