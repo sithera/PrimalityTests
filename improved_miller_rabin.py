@@ -13,6 +13,7 @@ def _try_composite(a, d, n, s):
 
 
 @print_statistics
+# @profile
 def is_prime(n, _precision_for_huge_n=16):
     if n in _known_primes or n in (0, 1):
         return True

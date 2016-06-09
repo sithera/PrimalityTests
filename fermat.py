@@ -1,6 +1,7 @@
 from random import randint
 from decorators import print_statistics
 
+#@profile
 @print_statistics
 def is_probable_prime(p, k=7):
     """

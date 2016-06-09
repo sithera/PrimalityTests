@@ -2,6 +2,7 @@ import random
 from decorators import print_statistics
 _mrpt_num_trials = 5 # number of bases to test, k
 
+
 @print_statistics
 def is_probable_prime(n):
     """
