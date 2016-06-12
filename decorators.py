@@ -33,7 +33,7 @@ def print_statistics(function):
         log_entry = "%(number)s %(result)s %(execution_time)s\n" % values
         log_file = "./logs/%s.log" % module_name
 
-        with open(log_file, 'ab') as log:
+        with open(log_file, 'ab+') as log:
             log.write(str.encode(log_entry))
 
         return result

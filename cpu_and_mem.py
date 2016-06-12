@@ -29,7 +29,7 @@ class CPUandMEM_Print(threading.Thread):
             self.mem_readings.append(cpu_and_mem[0])
             self.cpu_readings.append(cpu_and_mem[1])
 
-            with open(self.log_file, 'ab') as log:
+            with open(self.log_file, 'ab+') as log:
                 log_entry = "%.2f\t%.2f\n" % (cpu_and_mem)
                 log.write(str.encode(log_entry))
 

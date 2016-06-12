@@ -1,13 +1,12 @@
 import data_provider
 import fermat
 import os
-import improved_miller_rabin
+import miller_rabin
 import frobenius
 import solovay_strassen
 from cpu_and_mem import CPUandMEM_Print
 
 numbers = []
-accuracy = 10000
 
 def clean_logs(directory_path):
     for file_name in os.listdir(directory_path):
@@ -19,15 +18,6 @@ def run_testing_function(function):
         function(number)
 
 
-def test_by_number(numbers):
-    for number in numbers:
-        # miller_rabin.is_probable_prime(number)
-        # improved_miller_rabin.is_prime(number)
-        fermat.is_probable_prime(number)
-        # aks.is_prime(number)
-        # solovay_strassen.is_probable_prime(number)
-
-
 def run_fermat(numbers):
     print("Starting fermat")
     for number in numbers:
@@ -37,7 +27,7 @@ def run_fermat(numbers):
 def run_miller_rabin(numbers):
     print("Starting miller rabin")
     for number in numbers:
-        improved_miller_rabin.is_prime(number)
+        miller_rabin.is_probable_prime(number)
 
 
 def run_frobenius(numbers):

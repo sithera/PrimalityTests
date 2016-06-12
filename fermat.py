@@ -3,7 +3,7 @@ from decorators import print_statistics
 
 #@profile
 @print_statistics
-def is_probable_prime(p, k=7):
+def is_probable_prime(p, k=10):
     """
     Fermat test that determines whether a number is probable prime
     :param p: number to test
